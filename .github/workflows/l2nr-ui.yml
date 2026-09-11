@@ -10,8 +10,12 @@ on:
       - ".github/workflows/l2nr-ui.yml"
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
-  analyze:
+  build:
     uses: DariuszPiskorowski/l2nr-ui/.github/workflows/analyze-ui-node.yml@main
     with:
-      artifact_name: crimson-steam-gauge-analysis
+      command: build
+      artifact_name: crimson-steam-gauge-node-red
