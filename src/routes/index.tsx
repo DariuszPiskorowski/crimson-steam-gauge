@@ -23,19 +23,27 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+function getGaugeLabel(config: MqttConfig): string {
+  const path = config.payloadPath.trim();
+  if (!path) return "USTAWIENIA";
+  const last = path.split(".").pop() ?? path;
+  return last.toUpperCase();
+}
+
 function Index() {
-  const { value, status } = useMqttValue();
+  const { value } = useMqttValue();
+  const config = loadMqttConfig();
+  const label = getGaugeLabel(config);
 
   return (
     <main className="gauge-room flex min-h-screen flex-col items-center justify-center gap-6 px-6 py-12">
       <TemperatureGauge value={value ?? 21.3} min={0} max={50} label="TEMP °C" />
       <div
-        className="flex items-center gap-4 text-xs uppercase tracking-[0.25em] text-[var(--gauge-ember)] opacity-70"
+        className="text-xs uppercase tracking-[0.25em] text-[var(--gauge-ember)] opacity-70"
         style={{ fontFamily: "var(--font-tech)" }}
       >
-        <span>MQTT: {status}</span>
         <Link to="/mqtt" className="hover:opacity-100">
-          ustawienia
+          {label}
         </Link>
       </div>
     </main>
