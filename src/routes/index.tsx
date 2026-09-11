@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import TemperatureGauge from "@/components/TemperatureGauge";
+import { loadMqttConfig, type MqttConfig } from "@/mqtt/config";
 import { useMqttValue } from "@/mqtt/useMqttValue";
 
 export const Route = createFileRoute("/")({
