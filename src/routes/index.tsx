@@ -1,5 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import TemperatureGauge from "@/components/TemperatureGauge";
+import { useMqttValue } from "@/mqtt/useMqttValue";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -23,9 +24,20 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const { value, status } = useMqttValue();
+
   return (
-    <main className="gauge-room flex min-h-screen items-center justify-center px-6 py-12">
-      <TemperatureGauge value={21.3} min={0} max={50} label="TEMP °C" />
+    <main className="gauge-room flex min-h-screen flex-col items-center justify-center gap-6 px-6 py-12">
+      <TemperatureGauge value={value ?? 21.3} min={0} max={50} label="TEMP °C" />
+      <div
+        className="flex items-center gap-4 text-xs uppercase tracking-[0.25em] text-[var(--gauge-ember)] opacity-70"
+        style={{ fontFamily: "var(--font-tech)" }}
+      >
+        <span>MQTT: {status}</span>
+        <Link to="/mqtt" className="hover:opacity-100">
+          ustawienia
+        </Link>
+      </div>
     </main>
   );
 }

@@ -32,18 +32,20 @@ export function TemperatureGauge({
 
   const clamped = Math.min(max, Math.max(min, value));
   const frac = (clamped - min) / (max - min);
-  const needle = frac * 360;
+  // 0 sits at the bottom of the dial (6 o'clock) and the scale runs clockwise
+  const OFFSET = 180;
+  const needle = OFFSET + frac * 360;
 
   const DIV = 10; // numbered divisions around the full circle
   const MINOR = 100; // fine ticks
 
   const minorTicks = Array.from({ length: MINOR }, (_, i) => {
-    const a = (360 * i) / MINOR;
+    const a = OFFSET + (360 * i) / MINOR;
     return { a, p1: polar(cx, cy, 196, a), p2: polar(cx, cy, 187, a), i };
   });
 
   const majorTicks = Array.from({ length: DIV }, (_, i) => {
-    const a = (360 * i) / DIV;
+    const a = OFFSET + (360 * i) / DIV;
     return {
       a,
       i,
@@ -56,10 +58,11 @@ export function TemperatureGauge({
 
   // inner counter-scale (the second, smaller ring on the antique dial)
   const innerTicks = Array.from({ length: 50 }, (_, i) => {
-    const a = (360 * i) / 50;
+    const a = OFFSET + (360 * i) / 50;
     const long = i % 5 === 0;
     return { a, i, p1: polar(cx, cy, 122, a), p2: polar(cx, cy, long ? 108 : 115, a), long };
   });
+
 
   const tip = polar(cx, cy, 178, needle);
   const tail = polar(cx, cy, 36, needle + 180);
