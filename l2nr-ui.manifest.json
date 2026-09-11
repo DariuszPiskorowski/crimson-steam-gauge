@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "name": "crimson-steam-gauge",
+  "label": "Crimson Steam Gauge",
+  "component": "src/components/TemperatureGauge.tsx",
+  "dashboard": {
+    "width": 6,
+    "height": 6
+  },
+  "input": {
+    "source": "msg.payload"
+  },
+  "output": null
+}

@@ -1,0 +1,17 @@
+name: L2NR UI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "package.json"
+      - "l2nr-ui.manifest.json"
+      - ".github/workflows/l2nr-ui.yml"
+  workflow_dispatch:
+
+jobs:
+  analyze:
+    uses: DariuszPiskorowski/l2nr-ui/.github/workflows/analyze-ui-node.yml@main
+    with:
+      artifact_name: crimson-steam-gauge-analysis
