@@ -132,6 +132,24 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
+:root {
+  --gauge-ember: oklch(0.74 0.19 55);
+  --gauge-ember-hot: oklch(0.83 0.17 62);
+  --gauge-ember-deep: oklch(0.5 0.15 48);
+  --gauge-brass: oklch(0.55 0.1 62);
+  --gauge-glass: oklch(0.2 0.035 55 / 0.55);
+  --gauge-track: oklch(0.33 0.05 55 / 0.55);
+  --gauge-tick-dim: oklch(0.5 0.07 55);
+  --gauge-room: oklch(0.16 0.02 50);
+  --font-tech: "Chakra Petch", ui-monospace, monospace;
+}
+
+.gauge-room {
+  background:
+    radial-gradient(circle at 50% 45%, oklch(0.24 0.05 55 / 0.6), transparent 60%),
+    var(--gauge-room);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);

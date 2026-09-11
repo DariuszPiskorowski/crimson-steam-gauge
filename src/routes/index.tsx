@@ -1,24 +1,37 @@
 import { createFileRoute } from "@tanstack/react-router";
+import TemperatureGauge from "@/components/TemperatureGauge";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Steampunk Termostat — wskaźnik temperatury" },
+      {
+        name: "description",
+        content:
+          "Świecący, steampunkowy wskaźnik temperatury z zębatą skalą — zadana i aktualna temperatura na jednym panelu.",
+      },
+      { property: "og:title", content: "Steampunk Termostat — wskaźnik temperatury" },
+      {
+        property: "og:description",
+        content: "Świecący wskaźnik temperatury w stylu steampunk z precyzyjną, zębatą skalą.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="gauge-room flex min-h-screen flex-col items-center justify-center gap-10 px-6 py-16">
+      <h1
+        className="text-[var(--gauge-ember)] text-sm"
+        style={{ letterSpacing: "0.5em", fontFamily: "var(--font-tech)", opacity: 0.6 }}
+      >
+        TERMOSTAT
+      </h1>
+      <TemperatureGauge target={18} current={21.3} status="CZUWANIE" />
+    </main>
   );
 }
