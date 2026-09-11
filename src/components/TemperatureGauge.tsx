@@ -131,7 +131,6 @@ export function TemperatureGauge({
             x={t.num.x}
             y={t.num.y + 8}
             textAnchor="middle"
-            transform={`rotate(${t.a} ${t.num.x} ${t.num.y})`}
             opacity={0.85}
           >
             {t.value}
@@ -173,7 +172,7 @@ export function TemperatureGauge({
       {/* readout, kept small so the scale stays the hero */}
       <text
         x={cx}
-        y={cy + 66}
+        y={cy + 86}
         textAnchor="middle"
         className="fill-[var(--gauge-ember-hot)]"
         style={{ fontFamily: "var(--font-tech)", fontSize: 30, letterSpacing: 2 }}
