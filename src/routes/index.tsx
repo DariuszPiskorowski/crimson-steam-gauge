@@ -4,16 +4,16 @@ import TemperatureGauge from "@/components/TemperatureGauge";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Steampunk Termostat — wskaźnik temperatury" },
+      { title: "Wskaźnik temperatury — zębatkowa skala" },
       {
         name: "description",
         content:
-          "Świecący, steampunkowy wskaźnik temperatury z zębatą skalą — zadana i aktualna temperatura na jednym panelu.",
+          "Wskaźnik temperatury na dashboard: zabytkowa zębatkowa skala z igłą, w świecącej pomarańczowej kolorystyce.",
       },
-      { property: "og:title", content: "Steampunk Termostat — wskaźnik temperatury" },
+      { property: "og:title", content: "Wskaźnik temperatury — zębatkowa skala" },
       {
         property: "og:description",
-        content: "Świecący wskaźnik temperatury w stylu steampunk z precyzyjną, zębatą skalą.",
+        content: "Zabytkowa skala zegarowa jako wskaźnik temperatury w świecącym pomarańczowym tonie.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -24,14 +24,8 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main className="gauge-room flex min-h-screen flex-col items-center justify-center gap-10 px-6 py-16">
-      <h1
-        className="text-[var(--gauge-ember)] text-sm"
-        style={{ letterSpacing: "0.5em", fontFamily: "var(--font-tech)", opacity: 0.6 }}
-      >
-        TERMOSTAT
-      </h1>
-      <TemperatureGauge target={18} current={21.3} status="CZUWANIE" />
+    <main className="gauge-room flex min-h-screen items-center justify-center px-6 py-12">
+      <TemperatureGauge value={21.3} min={0} max={50} label="TEMP °C" />
     </main>
   );
 }
