@@ -20,10 +20,11 @@ export function useMqttValue(config?: MqttConfig) {
       const mqtt = (await import("mqtt")).default;
       if (cancelled) return;
       const c = mqtt.connect(cfg.websocketUrl, {
-        username: cfg.username || undefined,
-        password: cfg.password || undefined,
+        ...(cfg.username ? { username: cfg.username } : {}),
+        ...(cfg.password ? { password: cfg.password } : {}),
         reconnectPeriod: 5000,
       });
+
       client = c;
       c.on("connect", () => {
         setStatus("connected");
