@@ -10,5 +10,12 @@
   "input": {
     "source": "msg.payload"
   },
-  "output": null
+  "output": null,
+  "display": {
+    "valueProperty": "payload",
+    "caption": "AMBIENT",
+    "label": "TEMP °C",
+    "min": 0,
+    "max": 50
+  }
 }
