@@ -1,5 +1,5 @@
 name: L2NR UI
-# Build and publish the installable Dashboard 2 package for this display-only gauge.
+# Build and publish the installable Dashboard 2 package with configurable display settings.
 
 on:
   push:
